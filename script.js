@@ -7,6 +7,11 @@
             const imgSrc = element.getAttribute("data-full");
             const titleAndDesc = element.querySelector(".hidden-desc").innerHTML;
             
+            modalImg.classList.remove('loaded');    // Reset for the next image the modal might use
+            modalImg.onload = function(){
+                modalImg.classList.add('loaded');   // Fade in will begin AFTER image is actually loaded
+            }
+
             modalImg.src = imgSrc;
             modalText.innerHTML = titleAndDesc;
             
@@ -20,10 +25,7 @@
             content.style.animation = 'none';
             content.offsetHeight;                   // Trigger a 'reflow' - this is a magic trick to restart CSS animations
             content.style.animation = null;
-            modalImg.classList.remove('loaded');    // Reset for the next image the modal might use
-            modalImg.onload = function(){
-                modalImg.classList.add('loaded');   // Fade in will begin AFTER image is actually loaded
-            }
+
         }
 
         function closeModal() {
