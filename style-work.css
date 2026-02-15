@@ -147,8 +147,17 @@ html {
     color: var(--fox-copper);
 }
 
+/* These animations account for loading time for the full gallery images */
+#modalImg {
+    /* ... existing styles ... */
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+}
 
-
+/* This class will be added by JS once the image is ready */
+#modalImg.loaded {
+    opacity: 1;
+}
 
 /* --- Mobile Refinement for Modal --- */
 @media (max-width: 768px) {

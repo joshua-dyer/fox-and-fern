@@ -4,7 +4,7 @@
             const modalText = document.getElementById("modalText");
             
             // Extract the image source and the hidden text from the clicked div
-            const imgSrc = element.querySelector("img").src;
+            const imgSrc = element.getAttribute("data-full");
             const titleAndDesc = element.querySelector(".hidden-desc").innerHTML;
             
             modalImg.src = imgSrc;
@@ -18,8 +18,12 @@
             // Restart the animation for the content
             const content = modal.querySelector('.modal-content');
             content.style.animation = 'none';
-            content.offsetHeight; /* Trigger a 'reflow' - this is a magic trick to restart CSS animations */
+            content.offsetHeight;                   // Trigger a 'reflow' - this is a magic trick to restart CSS animations
             content.style.animation = null;
+            modalImg.classList.remove('loaded');    // Reset for the next image the modal might use
+            modalImg.onload = function(){
+                modalImg.classList.add('loaded');   // Fade in will begin AFTER image is actually loaded
+            }
         }
 
         function closeModal() {
