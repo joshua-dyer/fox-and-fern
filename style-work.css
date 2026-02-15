@@ -109,13 +109,13 @@ html {
 }
 
 .modal-text {
-    width: 40%;          /* Keep this */
-    flex-basis: 40%;     /* ADD THIS: Tells the text to stay in its 40% lane */
-    flex-shrink: 0;      /* ADD THIS: Prevents the image from squishing the text */
-    padding-left: 40px; /* Space between art and story */
-    background-color: #ebe7de; /* Match the unified look */
+    width: 40%;          
+    flex-basis: 40%;        /* Tells the text to stay in its 40% lane */
+    flex-shrink: 0;         /* Prevents the image from squishing the text */
+    padding-left: 40px;     /* Space between art and story */
+    background-color: #ebe7de; 
     max-height: 100%;
-    overflow-y: auto; /* If your story is long, it scrolls independently */
+    overflow-y: auto;                /* If your story is long, it scrolls independently */
     border-left: 1px solid rgba(74, 55, 40, 0.1); /* Very faint earth-brown line */
 }
 
