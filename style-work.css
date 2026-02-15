@@ -109,9 +109,9 @@ html {
 }
 
 .modal-text {
-    width: 40%;          
-    flex-basis: 40%;        /* Tells the text to stay in its 40% lane */
-    flex-shrink: 0;         /* Prevents the image from squishing the text */
+    flex: 0 0 40%;      /* Grow: 0, Shrink: 0, Basis: 40% */
+    width: 40%;         /* Explicit width for Safari */
+    box-sizing: border-box;      
     padding-left: 40px;     /* Space between art and story */
     background-color: #ebe7de; 
     max-height: 100%;
@@ -149,17 +149,23 @@ html {
     color: var(--fox-copper);
 }
 
-/* These animations account for loading time for the full gallery images */
+.modal-image-frame {
+    flex: 0 0 60%;      /* Grow: 0, Shrink: 0, Basis: 60% */
+    width: 60%;         /* Explicit width for Safari */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;       /* Ensure it spans the full height of the modal */
+}
+
 #modalImg {
-    /* ... existing styles ... */
+    width: auto;
+    max-width: 100%;    /* Never wider than the 60% frame */
+    max-height: calc(var(--modal-height) - (var(--modal-padding) * 2));
+    object-fit: contain;
+    display: block;
     opacity: 0;
     transition: opacity 0.5s ease-in;
-    width: 60%;          /* Keep this */
-    flex-basis: 60%;     /* ADD THIS: Tells Flexbox to reserve 60% of the width immediately */
-    flex-shrink: 0;      /* ADD THIS: Prevents the text from squishing the image area */
-    min-width: 60%;      /* ADD THIS: A hard floor for the image area */
-    height: auto;
-    object-fit: contain;
 }
 
 /* This class will be added by JS once the image is ready */
