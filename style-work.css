@@ -1,0 +1,162 @@
+:root {
+    --modal-height: 85vh;
+    --modal-padding: 30px;
+}
+
+/* Force Scrollbar */
+html {
+    overflow-y: scroll;
+}
+
+/* Gallery Layout */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+/* --- Thumbnail (Cropped) --- */
+.gallery-item {
+    aspect-ratio: 1 / 1; /* Forces the square 'frame' */
+    overflow: hidden;    /* Clips anything outside the square */
+    border: var(--border-thickness) solid var(--earth-brown);
+    background: #ebe7de; /* Use our paper color here too, avoid pure white */
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), 
+                box-shadow 0.8s ease,
+                border-color 0.8s ease;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;   /* Fills the square by cropping the sides/top */
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                filter 0.8s ease;
+    opacity: 0.95; /* Start slightly dimmed for eye comfort */
+}
+
+.gallery-item:hover{
+    /* Soft 'life' and a color shift */
+    transform: translateY(-5px); 
+    border-color: var(--fox-copper);
+    box-shadow: 0 10px 20px rgba(74, 55, 40, 0.1);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.03);
+    opacity: 1;    /* Gently brightens from starting opacity */
+    filter: saturate(1.1);
+}
+
+
+
+/* Modal Styling */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 2000;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(74, 55, 40, 0.95); /* Deep Earth Brown overlay */
+    justify-content: center;
+    align-items: center;
+    animation: fadeInOverlay 0.7s ease forwards;
+}
+
+/* --- Modal (Scaled to Fit / Never Cropped) --- */
+.modal-content {
+    /* Unified Paper Background */
+    background-color: #ebe7de; 
+    border: var(--border-thickness) solid var(--earth-brown);
+    max-width: 90%;
+    max-height: var(--modal-height);
+    display: flex;
+    flex-direction: row;
+    gap: 0px;
+    padding: var(--modal-padding);
+    overflow: hidden;
+    align-items: center;
+    box-sizing: border-box;
+    animation: slideUpPaper 0.7s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+#modalImg {
+    /* Fixed Width Constraint */
+    width: 60%; 
+    /* The Secret Sauce: max-height ensures it scales down if it's too tall */
+    max-height: calc(var(--modal-height) - (var(--modal-padding) * 2)); /* The Parent's (modal-content)  height - parent's padding x 2 */
+    object-fit: scale-down; 
+    display: block;
+    height: auto; /* Maintains original proportions */
+}
+
+/*--- Modal Animations ---*/
+@keyframes fadeInOverlay {
+    from { background-color: rgba(74, 55, 40, 0); }
+    to { background-color: rgba(74, 55, 40, 0.95); }
+}
+
+@keyframes slideUpPaper {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.98); /* Starts lower and slightly smaller */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1); /* Settles into place */
+    }
+}
+
+.modal-text {
+    width: 40%;
+    padding-left: 40px; /* Space between art and story */
+    background-color: #ebe7de; /* Match the unified look */
+    max-height: 100%;
+    overflow-y: auto; /* If your story is long, it scrolls independently */
+    border-left: 1px solid rgba(74, 55, 40, 0.1); /* Very faint earth-brown line */
+}
+
+.modal-text h3 {
+    font-family: 'DM Serif Display', serif;
+    color: var(--forest-green);
+    margin-top: 0;
+    font-size: 2.2rem;
+}
+
+.modal-text p {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.8;
+    color: var(--earth-brown);
+}
+
+/* This ensures the close button stands out against the dark overlay */
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 45px;
+    color: #f1ede4; /* Using your lighter cream color */
+    cursor: pointer;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.close-modal:hover {
+    transform: scale(1.2);
+    color: var(--fox-copper);
+}
+
+
+
+
+
+@media (max-width: 768px) {
+    .modal-content { flex-direction: column; }
+}
+
+#modalImg {
+    max-width: 60%;
+    height: auto;
+    object-fit: contain;
+}

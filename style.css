@@ -1,0 +1,246 @@
+:root {
+    --bg-color: #F9F7F2;      /* Off-white paper feel */
+    --forest-green: #2D4628;  /* Your green */
+    --earth-brown: #4A3728;   /* Deep brown for borders/text */
+    --fox-copper: #D35400;    /* Your copper/orange accent */
+    --border-thickness: 3px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Force Scrollbar */
+
+
+img{
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: 'Inter', sans-serif;
+    color: var(--earth-brown);
+    padding: 20px; /* The outer "frame" spacing */
+}
+
+main {
+    flex-grow: 1; /* Tells the middle section to take up all available room */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Styling for the link of the page you are currently on */
+a {
+    color: var(--earth-brown); /* No more blue! */
+    text-decoration: underline;      
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--fox-copper);   /* All links turn copper on hover */
+}
+
+a.active{
+    color: var(--forest-green);
+}
+
+
+/* The Main Border Box around the whole site */
+.site-wrapper {
+    border: var(--border-thickness) solid var(--earth-brown);
+    min-height: calc(100vh - 40px);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-bottom: 0 !important; /* Forcefully remove any bottom cushion */
+    overflow: hidden; /* Prevents scrollbar sprouting */
+}
+
+/* Header & Sticky Nav */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    border-bottom: var(--border-thickness) solid var(--earth-brown);
+    
+    /* This makes it stick */
+    position: sticky;
+    top: 0;
+    background: var(--bg-color); /* Essential so content doesn't show through */
+    z-index: 1000; /* Keeps it above the ferns and other content */
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--earth-brown);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+    margin: 0 15px;
+}
+
+nav a:hover {
+    color: var(--fox-copper);
+}
+
+/* The Fox Icon */
+.fox-fern-icon {
+    width: 90px;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
+/* The Tilt Effect */
+.fox-fern-icon:hover {
+    /* A 15-degree tilt and a slight scale up */
+    transform: rotate(-15deg) scale(1.1);
+}
+
+#ff-logo{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+/* Hero Section */
+.hero-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.studio-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 5rem;
+    color: var(--forest-green);
+    letter-spacing: -2px;
+}
+
+.studio-tagline {
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+/* Bottom Graphic Area */
+.bottom-graphic-section {
+    border-top: var(--border-thickness) solid var(--earth-brown);
+    overflow: visible; 
+    position: relative;
+    background-color: #f1ede4;
+    height: 400px; 
+    margin-top: auto; /* Pushes to the very bottom of the flex column */
+    width: 100%;
+}
+
+.fern-image {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    /* Start with the transform for the slide-up */
+    transform-origin: bottom center;
+    transform: translateX(-50%) translateY(0);
+    
+    min-width: 100%;
+    width: auto;
+    height: 150%;
+    object-fit: cover;
+    object-position: bottom;
+    display: block;
+    z-index: 5;
+
+    /* Combine both animations: 
+       1. slideUp (1.5s, happens once)
+       2. swayFern (6s, starts after a small delay, loops forever) */
+    animation: 
+        slideUpFern 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards,
+        swayFern 8s ease-in-out 1.5s infinite;
+    
+    opacity: 0;
+    /* This ensures the animation origin is at the bottom, 
+       so the ferns sway from the 'roots' rather than the middle */
+}
+
+/* The Slide up - animates ferns as they move into position */
+@keyframes slideUpFern {
+    0% {
+        /* We must keep the translateX(-50%) here so it stays centered while moving */
+        transform: translateX(-50%) translateY(80px); 
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+}
+/* The Sway - A very gentle rotation and shift */
+@keyframes swayFern {
+    0%, 100% {
+        /* Keep our centering translateX and add a 0 skew */
+        transform: translateX(-50%) skewX(0deg);
+    }
+    50% {
+        /* A very slight tilt (1-2 degrees is plenty) */
+        /* This stretches the top/sides but leaves the bottom line untouched */
+        transform: translateX(-50%) skewX(2.5deg);
+    }
+}
+
+
+
+/* --- Mobile Adjustments --- */
+@media (max-width: 768px) {
+    
+    /* 1. Reduce the outer padding so we don't waste screen space */
+    body {
+        padding: 10px;
+    }
+
+    /* 2. Stack the Navigation */
+    .main-header {
+        flex-direction: column; /* Stacks links and logo vertically */
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .nav-left, .nav-right {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+    }
+
+    /* 3. Scale down the Typography */
+    .studio-title {
+        font-size: 2.5rem; /* Smaller for phone screens */
+    }
+
+    /* 4. Adjust the Fern Graphic */
+    .bottom-graphic-section {
+        height: 300px; /* Shorter window for smaller screens */
+    }
+    
+    .fern-image {
+        height: 130%; /* Even more 'peek' on mobile if desired */
+        width: 150%; /* Allows the image to be wider than the screen for a nice crop */
+        left: 50%;
+        transform: translateX(-50%); /* Centers the over-wide image */
+    }
+}

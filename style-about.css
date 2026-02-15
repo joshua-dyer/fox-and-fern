@@ -1,0 +1,89 @@
+/* --- About Page Specifics --- */
+.about-container {
+    padding: 60px 40px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two even columns */
+    gap: 60px;
+    max-width: 1100px;
+    align-items: center;
+}
+
+.section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3rem;
+    color: var(--forest-green);
+    margin-bottom: 20px;
+}
+
+.about-text p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* A high-contrast frame for your photo */
+.about-image-frame {
+    border: var(--border-thickness) solid var(--earth-brown);
+    padding: 15px;
+    background: white;
+    transform: rotate(2deg); /* A slight tilt for that 'journal' feel */
+}
+
+.photo-placeholder {
+    background-color: #e0ddd5;
+    width: 100%;
+    aspect-ratio: 4 / 5; /* Tall portrait style */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: italic;
+    color: var(--earth-brown);
+}
+
+.contact-tease {
+    text-align: center;
+    padding: 80px 20px;
+    background-color: transparent;
+}
+
+.contact-tease .section-title {
+    font-size: 2rem;
+}
+
+
+/* --- Simple Footer for Internal Pages --- */
+.footer-simple {
+    border-top: var(--border-thickness) solid var(--earth-brown);
+    background-color: #f1ede4; /* Same background for consistency */
+    padding: 30px 0;
+    margin-top: auto; /* Keeps it at the very bottom */
+    text-align: center;
+}
+
+.footer-credits {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--earth-brown);
+    opacity: 0.8;
+}
+
+/* Mobile adjust for About Page */
+@media (max-width: 768px) {
+    .about-content {
+        grid-template-columns: 1fr; /* Stack text and photo */
+        padding: 20px;
+        gap: 40px;
+    }
+    
+    .about-image-frame {
+        transform: rotate(0deg); /* Straighten for mobile */
+    }
+}
