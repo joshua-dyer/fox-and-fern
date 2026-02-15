@@ -150,13 +150,44 @@ html {
 
 
 
-
+/* --- Mobile Refinement for Modal --- */
 @media (max-width: 768px) {
-    .modal-content { flex-direction: column; }
-}
+    .modal-content {
+        flex-direction: column; /* Stack image on top of text */
+        max-height: 90vh;       /* Give it a bit more room on tall phones */
+        width: 95%;            /* Fill more of the screen width */
+        padding: 15px;         /* Tighten padding to save space */
+        overflow-y: auto;      /* Ensure the whole modal can scroll if needed */
+    }
 
-#modalImg {
-    max-width: 60%;
-    height: auto;
-    object-fit: contain;
+    #modalImg {
+        width: 100%;           /* Image takes full width of the modal */
+        max-height: 45vh;      /* Limit image height so text is visible below it */
+        margin-bottom: 20px;   /* Space between art and title */
+    }
+
+    .modal-text {
+        width: 100%;           /* Text takes full width */
+        padding: 0 10px 20px;  /* Minimal padding */
+        border-left: none;     /* Remove that vertical line on mobile */
+        text-align: center;    /* Center text for a better mobile 'portrait' look */
+    }
+
+    .modal-text h3 {
+        font-size: 1.5rem;     /* Significantly smaller than desktop's 2.2rem */
+        margin-bottom: 10px;
+        line-height: 1.2;
+    }
+
+    .modal-text p {
+        font-size: 0.95rem;    /* Slightly smaller paragraph text */
+        line-height: 1.5;
+    }
+
+    .close-modal {
+        top: 10px;
+        right: 15px;
+        font-size: 30px;       /* Smaller close button so it's not in the way */
+        color: var(--earth-brown); /* Darker color so it's visible on the paper bg */
+    }
 }
