@@ -109,10 +109,17 @@ nav a:hover {
     transform: rotate(-15deg) scale(1.1);
 }
 
+.logo-center a {
+    text-decoration: none;
+    display: inline-block; /* Keeps the tilt animation smooth */
+    outline: none;
+}
+
 #ff-logo{
     width: 100%;
     height: 100%;
     object-fit: contain;
+    display: block;
 }
 
 
