@@ -149,6 +149,7 @@ nav a:hover {
 
 /* Bottom Graphic Area */
 .bottom-graphic-section {
+    overflow: visible !important; /* ensures container doesn't cut the image */
     border-top: var(--border-thickness) solid var(--earth-brown);
     overflow: visible; 
     position: relative;
@@ -159,6 +160,7 @@ nav a:hover {
 }
 
 .fern-image {
+    will-change: transform;  /* this tells browswers that this item is going to be animated, so don't clip it too aggressively */
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -166,13 +168,18 @@ nav a:hover {
     transform-origin: bottom center;
     transform: translateX(-50%) translateY(0);
     
-    min-width: 100%;
+    min-width: 110%;
     width: auto;
     height: 150%;
     object-fit: cover;
     object-position: bottom;
     display: block;
     z-index: 5;
+
+    /* Add Hardware Acceleration to prevent clipping/flicker on some browsers */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateX(-50%) translateZ(0);
 
     /* Combine both animations: 
        1. slideUp (1.5s, happens once)
@@ -190,11 +197,11 @@ nav a:hover {
 @keyframes slideUpFern {
     0% {
         /* We must keep the translateX(-50%) here so it stays centered while moving */
-        transform: translateX(-50%) translateY(80px); 
+        transform: translateX(-50%) translateY(80px) translateZ(0); 
         opacity: 0;
     }
     100% {
-        transform: translateX(-50%) translateY(0);
+        transform: translateX(-50%) translateY(0) translateZ(0);
         opacity: 1;
     }
 }
@@ -202,12 +209,12 @@ nav a:hover {
 @keyframes swayFern {
     0%, 100% {
         /* Keep our centering translateX and add a 0 skew */
-        transform: translateX(-50%) skewX(0deg);
+        transform: translateX(-50%) skewX(0deg) scale(1.05) translateZ(0);
     }
     50% {
         /* A very slight tilt (1-2 degrees is plenty) */
         /* This stretches the top/sides but leaves the bottom line untouched */
-        transform: translateX(-50%) skewX(2.5deg);
+        transform: translateX(-50%) skewX(2.5deg) scale(1.05) translateZ(0);
     }
 }
 
