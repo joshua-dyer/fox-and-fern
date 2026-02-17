@@ -9,7 +9,7 @@
             
             // Define the paths to use.  First the thumb will load.  After the higher-res modal_ images loads, we will swap
             const thumbPath = `./images/thumbs/${imgName}.jpg`;
-            const fullPath = `./images/gallery/modal_${imgName}.jpg`;
+            const fullPath = `./images/gallery/mid-res/mid-${imgName}.jpg`;
             
             // Set up the initial view for the modal
             modalImg.classList.remove('loaded');    // Reset for the next image the modal might use
