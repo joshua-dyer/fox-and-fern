@@ -167,11 +167,13 @@ html {
     display: block;
     opacity: 0;
     transition: opacity 0.5s ease-in;
+    filter: blur(2px);
 }
 
 /* This class will be added by JS once the image is ready */
 #modalImg.loaded {
     opacity: 1;
+    filter: blur(0);
 }
 
 /* --- Mobile Refinement for Modal --- */
