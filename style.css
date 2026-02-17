@@ -209,12 +209,12 @@ nav a:hover {
 @keyframes swayFern {
     0%, 100% {
         /* Keep our centering translateX and add a 0 skew */
-        transform: translateX(-50%) skewX(0deg) scale(1.05) translateZ(0);
+        transform: translateX(-50%) skewX(0deg) scale(1) translateZ(0);
     }
     50% {
         /* A very slight tilt (1-2 degrees is plenty) */
         /* This stretches the top/sides but leaves the bottom line untouched */
-        transform: translateX(-50%) skewX(2.5deg) scale(1.05) translateZ(0);
+        transform: translateX(-50%) skewX(2.5deg) scale(1) translateZ(0);
     }
 }
 
