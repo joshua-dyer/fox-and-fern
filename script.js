@@ -50,3 +50,39 @@
                 closeModal();
             }
         });
+
+
+/**
+ * Preload image helper function to assist
+ * with slower connections.
+ */
+function preloadImage(element) {
+    const imgName = element.getAttribute("data-img-name");
+    const midResPath = `./images/gallery/mid-res/mid-${imgName}.jpg`;
+    // Create a "ghost" image to start the download early
+    const img = new Image();
+    img.src = midResPath;
+}
+
+
+        // First loading fox icon animation
+document.addEventListener("DOMContentLoaded", function() {
+    const foxIcon = document.getElementById("ff-logo");
+    // Check if the fox has already 'landed' this session
+    const hasLanded = sessionStorage.getItem("foxLanded");
+
+    if (!hasLanded) {
+        console.log("The Fox is landing now..."); // THIS WILL APPEAR IN THE 'CONSOLE' TAB
+        foxIcon.classList.add("fox-landing-anim");
+        sessionStorage.setItem("foxLanded", "true");
+
+        // Wait for the delay (1.2s) + animation (1.2s) + a small buffer
+        setTimeout(() => {
+            foxIcon.classList.remove("fox-landing-anim");
+            // Ensure opacity stays 1 after the class is removed
+            foxIcon.style.opacity = "1"; 
+        }, 2600);
+    } else {
+    console.log("Fox has already landed. Standing still.");
+    }
+});

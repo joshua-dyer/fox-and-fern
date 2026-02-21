@@ -101,6 +101,8 @@ nav a:hover {
     align-items: center;
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
 
 /* The Tilt Effect */
@@ -108,6 +110,7 @@ nav a:hover {
     /* A 15-degree tilt and a slight scale up */
     transform: rotate(-15deg) scale(1.1);
 }
+
 
 .logo-center a {
     text-decoration: none;
@@ -120,6 +123,43 @@ nav a:hover {
     height: 100%;
     object-fit: contain;
     display: block;
+}
+
+.fox-landing-anim {
+    animation: landingFox 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
+}
+
+#ff-logo.fox-landing-anim {
+    /* We add a 1.2s delay so the fox starts spinning 
+       just before the ferns fully finish their 1.5s slide-up */
+    animation: landingFox 1.2s cubic-bezier(0.25, 1, 0.5, 1) 1.2s forwards !important;
+    opacity: 0; /* Keeps the fox invisible during the delay */
+}
+@keyframes landingFox {
+    0% {
+        opacity: 0;
+        /* Force 3D rendering with translateZ */
+        transform: scale(0.5) rotate(-360deg) translateZ(0);
+    }
+    50% {
+        opacity: 1;
+        /* Mid-point of the spin */
+        transform: scale(1.1) rotate(-180deg) translateZ(0);
+    }
+    70% {
+        /* The spin finishes here */
+        transform: scale(1) rotate(0deg) translateZ(0);
+    }
+    80% {
+        transform: rotate(15deg) translateZ(0); /* Wobble right */
+    }
+    90% {
+        transform: rotate(-10deg) translateZ(0); /* Wobble left */
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(0deg) scale(1) translateZ(0);
+    }
 }
 
 

@@ -1,18 +1,39 @@
 /* --- About Page Specifics --- */
 .about-container {
     padding: 60px 40px;
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-color: var(--bg-color);
+    /* A very subtle CSS-only grain effect */
+    background-image: url("https://www.transparenttextures.com/patterns/felt.png");
 }
+
 
 .about-content {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Two even columns */
-    gap: 60px;
-    max-width: 1100px;
+    grid-template-columns: 1fr; /* One column by default (Mobile) */
+    gap: 40px;
     align-items: center;
+    max-width: 1000px;
+    margin: 40px auto;
+}
+
+.about-image img {
+    border: var(--border-thickness) solid var(--earth-brown);
+    box-shadow: 10px 10px 0px var(--forest-green); /* A 'pop-art' style shadow */
+    transform: rotate(-2deg); /* A slight 'hand-placed' tilt */
+}
+
+.studio-photo {
+    width: 100%;
+    height: auto;
+    border: 12px solid white; /* Thick white border like a photo */
+    outline: 1px solid #ddd; /* Tiny subtle edge for the 'paper' */
+    box-shadow: 5px 10px 20px rgba(0,0,0,0.1); /* Soft shadow */
+    transform: rotate(-2deg); /* The 'hand-placed' tilt we discussed */
+    transition: transform 0.3s ease;
+}
+
+.studio-photo:hover {
+    transform: rotate(0deg) scale(1.02); /* Straightens and lifts on hover */
 }
 
 .section-title {
@@ -22,10 +43,37 @@
     margin-bottom: 20px;
 }
 
+.about-page-container {
+    flex: 1; /* Pushes the footer to the bottom */
+    display: flex;
+    align-items: center; /* Centers the content vertically */
+    justify-content: center;
+    padding: 60px 20px;
+    background-image: url("./images/felt-texture.png");
+}
+.site-wrapper {
+    overflow-y: auto; /* Allows the page to scroll within the border */
+}
 .about-text p {
     margin-bottom: 20px;
     font-size: 1.1rem;
     line-height: 1.8;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Drop cap Styling */
+.about-text p:first-of-type::first-letter {
+    font-family: 'DM Serif Display', serif; /* Using your logo font */
+    font-size: 5rem;
+    float: left;
+    line-height: 1;
+    margin-right: 12px;
+    margin-top: 4px;
+    color: var(--fox-copper); /* That nice copper accent */
+    /* Optional: add a slight tilt to match the scrapbook vibe */
+    transform: rotate(-5deg);
+    display: inline-block;
 }
 
 /* A high-contrast frame for your photo */
@@ -57,6 +105,23 @@
     font-size: 2rem;
 }
 
+/* Signature Styling */
+.signature-wrapper {
+    align-self: flex-end; /* Pushes it to the right side of the text */
+    margin-top: 20px;
+    max-width: 200px; /* Adjust based on your signature's width */
+}
+
+.artist-signature {
+    width: 100%;
+    height: auto;
+    /* Give it a slight upward slant like a natural signature */
+    transform: rotate(-3deg);
+    /* Make it a bit translucent to blend into the paper texture */
+    opacity: 0.85; 
+    /* This ensures it doesn't look like a solid blocky image */
+    mix-blend-mode: multiply; 
+}
 
 /* --- Simple Footer for Internal Pages --- */
 .footer-simple {
@@ -77,13 +142,13 @@
 
 /* Mobile adjust for About Page */
 @media (max-width: 768px) {
-    .about-content {
-        grid-template-columns: 1fr; /* Stack text and photo */
-        padding: 20px;
-        gap: 40px;
-    }
-    
     .about-image-frame {
         transform: rotate(0deg); /* Straighten for mobile */
+    }
+}
+
+@media (min-width: 768px) {
+    .about-content {
+        grid-template-columns: 1fr 1fr; /* Two equal columns */
     }
 }
