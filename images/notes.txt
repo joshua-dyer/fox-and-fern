@@ -1,0 +1,11 @@
+--- SIPS terminal command to reformat into compressed jpeg ---
+sips -Z 1200 -s format jpeg -s formatOptions 80 input.jpg --out output.jpg
+
+---
+--- cwebp command for webP conversion ---
+cwebp -q 75 your-new-art.jpg -o your-new-art.webp
+---
+
+Tool,Format Support,Best Used For...
+sips,"JPEG, PNG, TIFF","Resizing, rotating, and basic JPEG compression."
+cwebp,WebP Only,"Converting PNG/JPEG into the tiny, fast WebP format."

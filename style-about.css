@@ -64,14 +64,14 @@
 
 /* Drop cap Styling */
 .about-text p:first-of-type::first-letter {
-    font-family: 'DM Serif Display', serif; /* Using your logo font */
+    font-family: 'DM Serif Display', serif; /* Using logo font */
     font-size: 5rem;
     float: left;
     line-height: 1;
     margin-right: 12px;
     margin-top: 4px;
     color: var(--fox-copper); /* That nice copper accent */
-    /* Optional: add a slight tilt to match the scrapbook vibe */
+    /* adding a slight tilt to match the scrapbook vibe */
     transform: rotate(-5deg);
     display: inline-block;
 }
@@ -119,7 +119,7 @@
     transform: rotate(-3deg);
     /* Make it a bit translucent to blend into the paper texture */
     opacity: 0.85; 
-    /* This ensures it doesn't look like a solid blocky image */
+    /* This ensures it doesn't look like a solid blocky image - 'feathers' the edges */
     mix-blend-mode: multiply; 
 }
 
