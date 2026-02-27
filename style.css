@@ -210,7 +210,7 @@ nav a:hover {
     
     min-width: 110%;
     width: auto;
-    height: 150%;
+    height: 170%;
     object-fit: cover;
     object-position: bottom;
     display: block;
@@ -258,6 +258,11 @@ nav a:hover {
     }
 }
 
+/* The 'Active' Page Indicator */
+.main-header nav a.active {
+    color: var(--fox-copper);
+    font-weight: 900;
+}
 
 
 /* --- Mobile Adjustments --- */
