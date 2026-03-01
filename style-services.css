@@ -1,0 +1,148 @@
+.seed-catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    padding: 40px 0;
+}
+
+.seed-packet {
+    background: #fffdf9;
+    border: 1px solid #d1c7b7;
+    padding: 30px;
+    position: relative;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* The 'Seed Packet' Double Border Effect */
+.seed-packet::before {
+    content: '';
+    position: absolute;
+    top: 5px; left: 5px; right: 5px; bottom: 5px;
+    border: 1px solid #d1c7b7;
+    pointer-events: none;
+}
+
+.seed-packet:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.packet-no {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--fox-copper);
+    display: block;
+    margin-bottom: 10px;
+}
+
+.packet-header h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: var(--forest-green);
+}
+
+.packet-details {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    font-size: 0.9rem;
+    border-top: 1px dashed #d1c7b7;
+    padding-top: 20px;
+}
+
+.packet-details li::before {
+    content: '• ';
+    color: var(--fox-copper);
+}
+
+.price-tag {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    color: var(--forest-green);
+}
+
+/* Styling for Seed-packet 'thumbnails' */
+.packet-thumb {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.packet-thumb img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%; 
+    border: 1px solid #d1c7b7;
+    padding: 8px;
+    background: #fff;
+    mix-blend-mode: multiply; /* Blends the image into your background texture */
+    filter: contrast(1.1) brightness(0.95);
+    transition: all 0.4s ease;
+}
+
+.seed-packet:hover .packet-thumb img {
+    transform: scale(1.05) rotate(2deg); /* A tiny organic 'wiggle' on hover */
+    border-color: var(--fox-copper);
+}
+
+/* Styling for Call to action */
+.cta-planting-instructions {
+    text-align: center;
+    padding: 80px 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.line-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--fox-copper);
+    margin: 0 auto 30px;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 30px;
+    padding: 18px 35px;
+    background: var(--forest-green);
+    color: white;
+    text-decoration: none;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.cta-button:hover {
+    background: #2d4c3a;
+    transform: translateY(-3px);
+}
+
+
+/* Media Queries */
+
+@media (max-width: 768px) {
+    .seed-catalog-grid {
+        grid-template-columns: 1fr; /* Stack them vertically */
+        padding: 20px;
+    }
+    
+    .seed-packet {
+        margin-bottom: 20px;
+        padding: 25px; /* Slightly tighter padding for small screens */
+    }
+
+    .packet-thumb img {
+        width: 120px; /* Scale down the 'stamps' slightly for phones */
+        height: 120px;
+    }
+}

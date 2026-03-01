@@ -202,7 +202,7 @@ nav a:hover {
 .fern-image {
     will-change: transform;  /* this tells browswers that this item is going to be animated, so don't clip it too aggressively */
     position: absolute;
-    bottom: 0;
+    bottom: -4px;  /* ensuring that no ferns try to float! */
     left: 50%;
     /* Start with the transform for the slide-up */
     transform-origin: bottom center;
