@@ -1,0 +1,46 @@
+/* Success Page Styling */
+.success-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* Centers the message vertically */
+    text-align: center;
+    padding: 20px;
+}
+
+.success-content {
+    max-width: 500px;
+    padding: 40px;
+    border: 1px solid #d1c7b7;
+    background: #fff;
+    position: relative;
+}
+
+/* Adding that 'Double Border' seed packet look again */
+.success-content::after {
+    content: '';
+    position: absolute;
+    top: 5px; left: 5px; right: 5px; bottom: 5px;
+    border: 1px solid #d1c7b7;
+    pointer-events: none;
+}
+
+.success-content .leaf-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.back-home {
+    display: inline-block;
+    margin-top: 30px;
+    color: var(--fox-copper);
+    text-decoration: none;
+    font-family: 'DM Serif Display', serif;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+}
+
+.back-home:hover {
+    border-color: var(--fox-copper);
+}
