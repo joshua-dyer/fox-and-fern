@@ -1,8 +1,8 @@
 :root {
-    --bg-color: #F9F7F2;      /* Off-white paper feel */
-    --forest-green: #2D4628;  /* Your green */
-    --earth-brown: #4A3728;   /* Deep brown for borders/text */
-    --fox-copper: #D35400;    /* Your copper/orange accent */
+    --bg-color: #F9F7F2;      /* Off-white paper */
+    --forest-green: #2D4628;  /* Deep green */
+    --earth-brown: #4A3728;   /* Deep brown - borders/text */
+    --fox-copper: #D35400;    /* Copper/orange accent */
     --border-thickness: 3px;
 }
 
@@ -11,8 +11,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-
-/* Force Scrollbar */
 
 
 img{
@@ -34,9 +32,8 @@ main {
     flex-direction: column;
 }
 
-/* Styling for the link of the page you are currently on */
 a {
-    color: var(--earth-brown); /* No more blue! */
+    color: var(--earth-brown); /* Covers default blue links */
     text-decoration: underline;      
     text-decoration-thickness: 1px;
     text-underline-offset: 3px;
@@ -60,7 +57,7 @@ a.active{
     flex-direction: column;
     position: relative;
     padding-bottom: 0 !important; /* Forcefully remove any bottom cushion */
-    overflow: hidden; /* Prevents scrollbar sprouting */
+    overflow: hidden; /* Prevents scrollbar sprouting due to main page fern animation */
 }
 
 /* Header & Sticky Nav */
@@ -70,9 +67,7 @@ a.active{
     align-items: center;
     padding: 20px 40px;
     border-bottom: var(--border-thickness) solid var(--earth-brown);
-    
-    /* This makes it stick */
-    position: sticky;
+    position: sticky;  /* This makes it stick */
     top: 0;
     background: var(--bg-color); /* Essential so content doesn't show through */
     z-index: 1000; /* Keeps it above the ferns and other content */
@@ -105,10 +100,9 @@ nav a:hover {
     perspective: 1000px;
 }
 
-/* The Tilt Effect */
+/* Logo Tilt Effect */
 .fox-fern-icon:hover {
-    /* A 15-degree tilt and a slight scale up */
-    transform: rotate(-15deg) scale(1.1);
+    transform: rotate(-15deg) scale(1.1);  /* A 15-degree tilt and a slight scale up */
 }
 
 
@@ -130,7 +124,7 @@ nav a:hover {
 }
 
 #ff-logo.fox-landing-anim {
-    /* We add a 1.2s delay so the fox starts spinning 
+    /* Adding a 1.2s delay so the fox starts spinning into view
        just before the ferns fully finish their 1.5s slide-up */
     animation: landingFox 1.2s cubic-bezier(0.25, 1, 0.5, 1) 1.2s forwards !important;
     opacity: 0; /* Keeps the fox invisible during the delay */
@@ -202,7 +196,7 @@ nav a:hover {
 .fern-image {
     will-change: transform;  /* this tells browswers that this item is going to be animated, so don't clip it too aggressively */
     position: absolute;
-    bottom: -4px;  /* ensuring that no ferns try to float! */
+    bottom: -4px;  /* ensuring that no ferns try to float!  They were hovering a few pixels from the base before adding this. */
     left: 50%;
     /* Start with the transform for the slide-up */
     transform-origin: bottom center;
@@ -236,7 +230,7 @@ nav a:hover {
 /* The Slide up - animates ferns as they move into position */
 @keyframes slideUpFern {
     0% {
-        /* We must keep the translateX(-50%) here so it stays centered while moving */
+        /* Keep the translateX(-50%) here so it stays centered while moving!!! */
         transform: translateX(-50%) translateY(80px) translateZ(0); 
         opacity: 0;
     }
@@ -248,7 +242,7 @@ nav a:hover {
 /* The Sway - A very gentle rotation and shift */
 @keyframes swayFern {
     0%, 100% {
-        /* Keep our centering translateX and add a 0 skew */
+        /* Keep the centering translateX and add a 0 skew */
         transform: translateX(-50%) skewX(0deg) scale(1) translateZ(0);
     }
     50% {
@@ -265,15 +259,32 @@ nav a:hover {
 }
 
 
+/* --- Simple Footer for Internal Pages --- */
+.footer-simple {
+    border-top: var(--border-thickness) solid var(--earth-brown);
+    background-color: #f1ede4; /* Same background for consistency */
+    padding: 30px 0;
+    margin-top: auto; /* Keeps it at the very bottom */
+    text-align: center;
+}
+
+.footer-credits {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--earth-brown);
+    opacity: 0.8;
+}
+
 /* --- Mobile Adjustments --- */
 @media (max-width: 768px) {
     
-    /* 1. Reduce the outer padding so we don't waste screen space */
+    /* Reduce the outer padding to conserve screen space */
     body {
         padding: 10px;
     }
 
-    /* 2. Stack the Navigation */
+    /* Stack the Navigation */
     .main-header {
         flex-direction: column; /* Stacks links and logo vertically */
         padding: 15px;
@@ -286,18 +297,18 @@ nav a:hover {
         width: 100%;
     }
 
-    /* 3. Scale down the Typography */
+    /* Scale down the Typography */
     .studio-title {
         font-size: 2.5rem; /* Smaller for phone screens */
     }
 
-    /* 4. Adjust the Fern Graphic */
+    /* Adjust the Fern Graphic */
     .bottom-graphic-section {
-        height: 300px; /* Shorter window for smaller screens */
+        height: 300px; /* Shorter window for smaller screens - was covering too much previously */
     }
     
     .fern-image {
-        height: 130%; /* Even more 'peek' on mobile if desired */
+        height: 130%; /* Even more 'peek' on mobile as I lose the taller outer ferns */
         width: 150%; /* Allows the image to be wider than the screen for a nice crop */
         left: 50%;
         transform: translateX(-50%); /* Centers the over-wide image */
