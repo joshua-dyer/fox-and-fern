@@ -1,8 +1,8 @@
-// 1. Grab our elements
+
 const contactForm = document.getElementById('contact-form');
 const statusMsg = document.getElementById('form-status');
 
-// 2. Define the Animation Function FIRST (so it's ready to be called)
+// Animation Function
 function triggerLeafDrop() {
     const leaf = document.querySelector('.leaf-icon');
     if (leaf) {
@@ -12,7 +12,7 @@ function triggerLeafDrop() {
     }
 
     setTimeout(() => {
-        if (contactForm) contactForm.style.display = 'none';
+        //if (contactForm) contactForm.style.display = 'none';
         if (statusMsg) {
             statusMsg.classList.remove('hidden');
             statusMsg.style.display = 'block'; // Ensure it's visible
@@ -20,30 +20,40 @@ function triggerLeafDrop() {
     }, 900);
 }
 
-// 3. The Event Listener (with a Guard Clause)
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const formData = new FormData(contactForm);
-
-        // Netlify needs an extra hidden field to know which form is which
-        // If you didn't add the 'data-netlify="true"' to your HTML, do that first!
-        
-        fetch("/", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams(formData).toString(),
-        })
-        .then((response) => {
-            if (response.ok) {
-                triggerLeafDrop();
-            } else {
-                throw new Error('Network response was not ok.');
-            }
-        })
-        .catch((error) => {
-            alert("The wind caught that leaf! Please try again or email me directly.");
-        });
-    });
+function triggerStatusMsg() {
+    if (statusMsg){
+        statusMsg.classList.add('visible');
+    }
 }
+
+// The Form Event Listener
+if (contactForm) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Start the leaf animation immediately for tactile feedback
+    triggerLeafDrop(); 
+    // Fade in the statusMsg
+    triggerStatusMsg();
+
+    const formData = new FormData(contactForm);
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString(),
+    })
+    .then(() => {
+      // SUCCESS: The leaf landed safely
+      formStatus.textContent = "Your leaf has landed safely in the studio inbox. I'll reach out soon.";
+      formStatus.classList.remove('hidden');
+      // Manually clear the inputs so the form stays visible but empty
+        contactForm.reset();
+});
+    })
+    .catch((error) => {
+      // ERROR: The wind caught it
+      formStatus.textContent = "The wind must have caught that leaf. Please try again in a bit.";
+      formStatus.classList.remove('hidden');
+    });
+  }

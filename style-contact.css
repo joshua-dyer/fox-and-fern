@@ -66,3 +66,23 @@
     transform: translateY(-2px);
     background: #2d4c3a;
 }
+
+/* Form status styling */
+
+#form-status {
+    opacity: 0;
+    margin-top: 25px;
+    padding: 15px;
+    border-left: 2px solid var(--fox-copper);
+    background: rgba(213, 143, 103, 0.05);
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    color: var(--forest-green);
+    transform: translateY(10px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+#form-status.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
